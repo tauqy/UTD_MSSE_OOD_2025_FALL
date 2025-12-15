@@ -4,15 +4,12 @@ import Item.Book.Book;
 import Item.Item;
 import Item.Movie.Movie;
 import Item.Music.Music;
-import Rental.DiscountRental;
 import Rental.Rental;
 
 public class OneDollarOffRentalCoupon extends RentalCouponDecorator {
 
     public OneDollarOffRentalCoupon(Rental rental) {
-        DiscountRental original = rental.getDiscountRental();
-        super(original);
-        rental.setDiscountRental(this);
+        super(rental);
     }
 
     @Override
@@ -23,6 +20,7 @@ public class OneDollarOffRentalCoupon extends RentalCouponDecorator {
         if(item instanceof Movie || item instanceof Book || item instanceof Music){
             return basePrice > 5 ? basePrice - 1 : basePrice;
         }
+
         return basePrice;
     }
 }

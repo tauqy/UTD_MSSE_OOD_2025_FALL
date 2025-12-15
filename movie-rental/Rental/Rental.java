@@ -1,15 +1,15 @@
 package Rental;
 
 import Item.Item;
-import Rental.Strategys.FrequentRentalPoints.Factory.ItemFrequentRentalPointFactory;
-import Rental.Strategys.RentalPrice.Factory.ItemRentalPriceStrategyFactory;
+import Rental.Strategies.FrequentRentalPoints.Factory.ItemFrequentRentalPointFactory;
+import Rental.Strategies.RentalPrice.Factory.ItemRentalPriceStrategyFactory;
 
 public class Rental implements DiscountRental, DiscountFrequentRentalPoint {
     private final Item item;
     private final int daysRented;
 
     private DiscountRental discountRentalStrategy;
-    private final DiscountFrequentRentalPoint discountFrequentRentalPointStrategy;
+    private DiscountFrequentRentalPoint discountFrequentRentalPointStrategy;
 
     public Rental(Item item,int daysRented){
         this.item = item;
@@ -30,6 +30,14 @@ public class Rental implements DiscountRental, DiscountFrequentRentalPoint {
 
     public void setDiscountRental(DiscountRental discountRental){
         this.discountRentalStrategy = discountRental;
+    }
+
+    public void setFrequentRentalPointStrategy(DiscountFrequentRentalPoint strategy) {
+        this.discountFrequentRentalPointStrategy = strategy;
+    }
+
+    public DiscountFrequentRentalPoint getFrequentRentalPointStrategy() {
+        return this.discountFrequentRentalPointStrategy;
     }
 
     public int getDaysRented() {

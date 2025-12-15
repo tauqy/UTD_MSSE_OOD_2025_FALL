@@ -7,18 +7,27 @@ import Item.VideoGame.VideoGame;
 import Purchase.Purchase;
 
 public class FreeMovieRedemptionPurchaseCoupon extends PurchaseCouponDecorator{
-    public FreeMovieRedemptionPurchaseCoupon(Purchase purchase){
-        super(purchase.getDiscountPurchase());
-        purchase.setDiscountPurchase(this);
+    public static final int REDEMPTION_POINT_COST = 10;
+    private final boolean isRedeemable;
+
+    public FreeMovieRedemptionPurchaseCoupon(Purchase purchase, double customerPointBalance) {
+        super(purchase);
+        this.isRedeemable = customerPointBalance >= REDEMPTION_POINT_COST;
     }
 
     @Override
     public double getPrice(Purchase purchase) {
-        Item item = purchase.getItem();
-        if(item instanceof Movie || item instanceof Book || item instanceof VideoGame)
-        {
-            return 0;
+        if(purchase.getItem() instanceof Movie && this.isRedeemable) {
+            return 0.0;
         }
         return super.getPrice(purchase);
+    }
+
+    @Override
+    public int getFrequentPurchasePoint(Purchase purchase) {
+        if(purchase.getItem() instanceof Movie && this.isRedeemable) {
+            return -REDEMPTION_POINT_COST;
+        }
+        return super.getFrequentPurchasePoint(purchase);
     }
 }

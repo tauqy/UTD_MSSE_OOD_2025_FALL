@@ -64,6 +64,22 @@ public class Transaction implements DiscountTransaction, DiscountTransactionRewa
         return this.transactionStrategy.getTotalCost(transaction);
     }
 
+    public int getTotalRentalReward(Transaction transaction) {
+        int totalReward = 0;
+        for(Rental rental: transaction.getRentals()){
+            totalReward += rental.getFrequentRentalPoint(rental);
+        }
+        return totalReward;
+    }
+
+    public int getTotalPurchaseReward(Transaction transaction) {
+        int totalReward = 0;
+        for (Purchase purchase: transaction.getPurchases()){
+            totalReward += purchase.getFrequentPurchasePoint(purchase);
+        }
+        return totalReward;
+    }
+
     @Override
     public int getTotalReward(Transaction transaction) {
         int totalReward = 0;

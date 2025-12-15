@@ -62,6 +62,10 @@ public class Customer {
             statement.append("Total Amount owed: $")
                     .append(String.valueOf(this.transaction.getTotalCost(transaction)))
                     .append("\n");
+            statement.append("Total Rental Rewards: ")
+                    .append(String.valueOf(this.transaction.getTotalRentalReward(transaction)));
+            statement.append("Total Purchase Rewards: ")
+                    .append(String.valueOf(this.transaction.getTotalPurchaseReward(transaction)));
             statement.append("Total Rewards: ")
                     .append(String.valueOf(this.transaction.getTotalReward(transaction)));
         }
@@ -100,6 +104,8 @@ public class Customer {
                     .append("    <totalRentalCost>").append(transaction.getTotalRentalCost(transaction)).append("</totalRentalCost>\n")
                     .append("    <totalPurchaseCost>").append(transaction.getTotalPurchaseCost(transaction)).append("</totalPurchaseCost>\n")
                     .append("    <totalCost>").append(transaction.getTotalCost(transaction)).append("</totalCost>\n")
+                    .append("    <totalRentalPoints>").append(transaction.getTotalRentalReward(transaction)).append("</totalRentalPoints>\n")
+                    .append("    <totalPurchasePoints>").append(transaction.getTotalPurchaseReward(transaction)).append("</totalPurchasePoints>\n")
                     .append("    <totalPoints>").append(transaction.getTotalReward(transaction)).append("</totalPoints>\n")
                     .append("  </totals>\n")
                     .append("</customer>");

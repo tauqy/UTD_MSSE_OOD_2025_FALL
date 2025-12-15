@@ -1,18 +1,28 @@
 package Purchase.Coupons;
 
-import Item.Item;
 import Purchase.DiscountPurchase;
+import Purchase.DiscountFrequentPurchasePoint;
 import Purchase.Purchase;
 
-public class PurchaseCouponDecorator implements DiscountPurchase {
-    protected DiscountPurchase discountPurchase;
+public class PurchaseCouponDecorator implements DiscountPurchase, DiscountFrequentPurchasePoint {
+    protected DiscountPurchase priceStrategy;
+    protected DiscountFrequentPurchasePoint pointStrategy;
 
-    public PurchaseCouponDecorator(DiscountPurchase discountPurchase){
-        this.discountPurchase = discountPurchase;
+    public PurchaseCouponDecorator(Purchase purchase){
+        this.priceStrategy = purchase.getDiscountPurchase();
+        this.pointStrategy = purchase.getFrequentPurchasePointStrategy();
+
+        purchase.setDiscountPurchase(this);
+        purchase.setFrequentPurchasePointStrategy(this);
     }
 
     @Override
     public double getPrice(Purchase purchase) {
-        return this.discountPurchase.getPrice(purchase);
+        return this.priceStrategy.getPrice(purchase);
+    }
+
+    @Override
+    public int getFrequentPurchasePoint(Purchase purchase) {
+        return this.pointStrategy != null ? this.pointStrategy.getFrequentPurchasePoint(purchase) : 0;
     }
 }

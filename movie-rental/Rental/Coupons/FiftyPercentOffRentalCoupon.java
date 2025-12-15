@@ -4,7 +4,6 @@ import Item.Book.Book;
 import Item.Item;
 import Item.Movie.Movie;
 import Item.Music.Music;
-import Rental.DiscountRental;
 import Rental.Rental;
 
 public class FiftyPercentOffRentalCoupon extends RentalCouponDecorator {
@@ -12,9 +11,7 @@ public class FiftyPercentOffRentalCoupon extends RentalCouponDecorator {
     private static final double DISCOUNT_RATE = 0.50;
 
     public FiftyPercentOffRentalCoupon(Rental rental){
-        DiscountRental originalDiscountRental = rental.getDiscountRental();
-        super(originalDiscountRental);
-        rental.setDiscountRental(this);
+        super(rental);
     }
 
     @Override

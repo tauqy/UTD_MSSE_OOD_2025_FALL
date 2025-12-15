@@ -4,7 +4,7 @@ import Transaction.Transaction;
 
 public class FiveDollarOffRentalTransactionCoupon extends TransactionCouponDecorator {
 
-    private static final int RENTAL_COUNT_THRESHOLD = 2;
+    private static final int RENTAL_COUNT_THRESHOLD = 5;
     private static final double DISCOUNT_AMOUNT = 5.00;
 
     public FiveDollarOffRentalTransactionCoupon(Transaction transaction){

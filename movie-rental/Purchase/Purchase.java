@@ -1,15 +1,15 @@
 package Purchase;
 
 import Item.Item;
-import Purchase.Strategys.FrequentPurchasePoint.Factory.ItemFrequentPurchasePointFactory;
-import Purchase.Strategys.PurchasePrice.Factory.ItemPurchaseStrategyFactory;
+import Purchase.Strategies.FrequentPurchasePoint.Factory.ItemFrequentPurchasePointFactory;
+import Purchase.Strategies.PurchasePrice.Factory.ItemPurchaseStrategyFactory;
 
 public class Purchase implements DiscountPurchase, DiscountFrequentPurchasePoint {
 
     private Item item;
 
     private DiscountPurchase discountPurchaseStrategy;
-    private final DiscountFrequentPurchasePoint discountFrequentPurchasePointStrategy;
+    private DiscountFrequentPurchasePoint discountFrequentPurchasePointStrategy;
 
     public Purchase(Item item){
         this.item = item;
@@ -27,6 +27,14 @@ public class Purchase implements DiscountPurchase, DiscountFrequentPurchasePoint
 
     public void setDiscountPurchase(DiscountPurchase discountPurchase){
         this.discountPurchaseStrategy = discountPurchase;
+    }
+
+    public void setFrequentPurchasePointStrategy(DiscountFrequentPurchasePoint strategy) {
+        this.discountFrequentPurchasePointStrategy = strategy;
+    }
+
+    public DiscountFrequentPurchasePoint getFrequentPurchasePointStrategy() {
+        return this.discountFrequentPurchasePointStrategy;
     }
 
     public Item getItem() {

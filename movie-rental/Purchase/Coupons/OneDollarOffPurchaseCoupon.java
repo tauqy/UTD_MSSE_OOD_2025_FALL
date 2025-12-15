@@ -10,8 +10,7 @@ import Purchase.Purchase;
 public class OneDollarOffPurchaseCoupon extends PurchaseCouponDecorator {
 
     public OneDollarOffPurchaseCoupon(Purchase purchase){
-        super(purchase.getDiscountPurchase());
-        purchase.setDiscountPurchase(this);
+        super(purchase);
     }
     @Override
     public double getPrice(Purchase purchase) {
