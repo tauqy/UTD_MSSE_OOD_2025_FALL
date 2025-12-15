@@ -7,13 +7,14 @@ public class FiveDollarOffPurchaseTransactionCoupon extends TransactionCouponDec
     private static final double DISCOUNT_AMOUNT = 5.00;
 
     public FiveDollarOffPurchaseTransactionCoupon(Transaction transaction) {
-        super(transaction);
+        super(transaction.getTransactionStrategy());
+        transaction.setTransactionStrategy(this);
     }
 
     @Override
     public double getTotalCost(Transaction transaction)  {
-        double currentPrice = transaction.getTotalPurchaseCost(transaction);
-        int purchaseCount = transaction.getRentals().size();
+        double currentPrice = super.getTotalCost(transaction);
+        int purchaseCount = transaction.getPurchases().size();
 
         return purchaseCount >= PURCHASE_COUNT_THRESHOLD ?
                 currentPrice - DISCOUNT_AMOUNT :

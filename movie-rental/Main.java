@@ -7,8 +7,10 @@ import Purchase.Purchase;
 import Rental.Coupons.FiftyPercentOffRentalCoupon;
 import Rental.Coupons.OneDollarOffRentalCoupon;
 import Rental.Rental;
+import Transaction.Coupons.FiveDollarOffPurchaseTransactionCoupon;
 import Transaction.Coupons.FiveDollarOffRentalTransactionCoupon;
 import Transaction.Transaction;
+import Transaction.DiscountTransaction;
 
 public class Main {
     public static void main(String[] args){
@@ -44,11 +46,24 @@ public class Main {
         transaction.addRental(casablancaMovieRental);
         //Purchase Transaction
         transaction.addPurchase(frozenMoviePurchase);
+        transaction.addPurchase(frozenMoviePurchase);
+        transaction.addPurchase(frozenMoviePurchase);
+        transaction.addPurchase(frozenMoviePurchase);
+        transaction.addPurchase(frozenMoviePurchase);
 
         //Customer
         Customer tauqeer = new Customer("Tauqeer Murtaza", 15, transaction);
         System.out.println(tauqeer.printStatement());
         System.out.println(tauqeer.printXmlStatement());
-        transaction = new FiveDollarOffRentalTransactionCoupon(transaction);
+        //Apply Transaction coupon
+        System.out.println("================Rental Transaction Discount=========================");
+        new FiveDollarOffRentalTransactionCoupon(transaction);
+        System.out.println(tauqeer.printStatement());
+        System.out.println(tauqeer.printXmlStatement());
+        new FiveDollarOffPurchaseTransactionCoupon(transaction);
+        System.out.println("================Purchase Transaction Discount=========================");
+        System.out.println(tauqeer.printStatement());
+        System.out.println(tauqeer.printXmlStatement());
+
     }
 }

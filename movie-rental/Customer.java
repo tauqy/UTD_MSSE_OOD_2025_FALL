@@ -53,6 +53,12 @@ public class Customer {
                 }
             }
             statement.append("Transaction Summary\n");
+            statement.append("Total Rental Amount owed: $")
+                    .append(String.valueOf(this.transaction.getTotalRentalCost(transaction)))
+                    .append("\n");
+            statement.append("Total Purchase Amount owed: $")
+                    .append(String.valueOf(this.transaction.getTotalPurchaseCost(transaction)))
+                    .append("\n");
             statement.append("Total Amount owed: $")
                     .append(String.valueOf(this.transaction.getTotalCost(transaction)))
                     .append("\n");
@@ -91,6 +97,8 @@ public class Customer {
                 xmlStatement.append("</purchaseRecord>\n");
             }
             xmlStatement.append("  <totals>\n")
+                    .append("    <totalRentalCost>").append(transaction.getTotalRentalCost(transaction)).append("</totalRentalCost>\n")
+                    .append("    <totalPurchaseCost>").append(transaction.getTotalPurchaseCost(transaction)).append("</totalPurchaseCost>\n")
                     .append("    <totalCost>").append(transaction.getTotalCost(transaction)).append("</totalCost>\n")
                     .append("    <totalPoints>").append(transaction.getTotalReward(transaction)).append("</totalPoints>\n")
                     .append("  </totals>\n")

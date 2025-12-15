@@ -10,9 +10,21 @@ public class Transaction implements DiscountTransaction, DiscountTransactionRewa
     private ArrayList<Rental> rentals;
     private ArrayList<Purchase> purchases;
 
+    private DiscountTransaction transactionStrategy;
+
     public Transaction(){
         this.rentals = new ArrayList<>();
         this.purchases = new ArrayList<>();
+
+        this.transactionStrategy = new RegularTransactionPriceStrategy();
+    }
+
+    public DiscountTransaction getTransactionStrategy(){
+        return this.transactionStrategy;
+    }
+
+    public void setTransactionStrategy(DiscountTransaction discountTransaction){
+        this.transactionStrategy = discountTransaction;
     }
 
     public void addRental(Rental rental){
@@ -49,14 +61,7 @@ public class Transaction implements DiscountTransaction, DiscountTransactionRewa
 
     @Override
     public double getTotalCost(Transaction transaction) {
-        double totalCost = 0;
-        for(Rental rental: transaction.getRentals()){
-            totalCost += rental.getPrice(rental);
-        }
-        for(Purchase purchase: transaction.getPurchases()){
-            totalCost += purchase.getPrice(purchase);
-        }
-        return totalCost;
+        return this.transactionStrategy.getTotalCost(transaction);
     }
 
     @Override
