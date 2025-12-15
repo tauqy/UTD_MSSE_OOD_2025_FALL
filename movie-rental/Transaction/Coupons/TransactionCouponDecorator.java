@@ -1,6 +1,7 @@
 package Transaction.Coupons;
 
 import Transaction.DiscountTransaction;
+import Transaction.Transaction;
 
 public class TransactionCouponDecorator implements DiscountTransaction {
     protected DiscountTransaction discountTransaction;
@@ -10,12 +11,7 @@ public class TransactionCouponDecorator implements DiscountTransaction {
     }
 
     @Override
-    public double getTotalCost()  {
-        return this.discountTransaction.getTotalCost();
-    }
-
-    @Override
-    public int getTotalReward() {
-        return this.discountTransaction.getTotalReward();
+    public double getTotalCost(Transaction transaction)  {
+        return this.discountTransaction.getTotalCost(transaction);
     }
 }

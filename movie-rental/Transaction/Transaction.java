@@ -5,7 +5,7 @@ import Rental.Rental;
 
 import java.util.ArrayList;
 
-public class Transaction implements DiscountTransaction {
+public class Transaction implements DiscountTransaction, DiscountTransactionRewards {
 
     private ArrayList<Rental> rentals;
     private ArrayList<Purchase> purchases;
@@ -31,25 +31,41 @@ public class Transaction implements DiscountTransaction {
         return this.purchases;
     }
 
-    @Override
-    public double getTotalCost() {
+    public double getTotalRentalCost(Transaction transaction) {
         double totalCost = 0;
-        for(Rental rental: this.rentals){
+        for(Rental rental: transaction.getRentals()){
             totalCost += rental.getPrice(rental);
         }
-        for(Purchase purchase: this.purchases){
+        return totalCost;
+    }
+
+    public double getTotalPurchaseCost(Transaction transaction) {
+        double totalCost = 0;
+        for(Purchase purchase: transaction.getPurchases()){
             totalCost += purchase.getPrice(purchase);
         }
         return totalCost;
     }
 
     @Override
-    public int getTotalReward() {
+    public double getTotalCost(Transaction transaction) {
+        double totalCost = 0;
+        for(Rental rental: transaction.getRentals()){
+            totalCost += rental.getPrice(rental);
+        }
+        for(Purchase purchase: transaction.getPurchases()){
+            totalCost += purchase.getPrice(purchase);
+        }
+        return totalCost;
+    }
+
+    @Override
+    public int getTotalReward(Transaction transaction) {
         int totalReward = 0;
-        for(Rental rental: this.rentals){
+        for(Rental rental: transaction.getRentals()){
             totalReward += rental.getFrequentRentalPoint(rental);
         }
-        for (Purchase purchase: this.purchases){
+        for (Purchase purchase: transaction.getPurchases()){
             totalReward += purchase.getFrequentPurchasePoint(purchase);
         }
         return totalReward;

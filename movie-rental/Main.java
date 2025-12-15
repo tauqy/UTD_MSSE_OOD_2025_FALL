@@ -7,6 +7,7 @@ import Purchase.Purchase;
 import Rental.Coupons.FiftyPercentOffRentalCoupon;
 import Rental.Coupons.OneDollarOffRentalCoupon;
 import Rental.Rental;
+import Transaction.Coupons.FiveDollarOffRentalTransactionCoupon;
 import Transaction.Transaction;
 
 public class Main {
@@ -48,5 +49,6 @@ public class Main {
         Customer tauqeer = new Customer("Tauqeer Murtaza", 15, transaction);
         System.out.println(tauqeer.printStatement());
         System.out.println(tauqeer.printXmlStatement());
+        transaction = new FiveDollarOffRentalTransactionCoupon(transaction);
     }
 }
