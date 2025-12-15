@@ -7,23 +7,25 @@ import Item.Movie.Movie;
 import Item.Popcorn.Popcorn;
 import Item.VideoGame.VideoGame;
 import Purchase.DiscountPurchase;
+import Purchase.Purchase;
 
 public class ItemPurchaseStrategyFactory {
-    public DiscountPurchase getStrategy(Item item){
+    public DiscountPurchase getStrategy(Purchase purchase){
+        Item item = purchase.getItem();
         if(item instanceof Movie){
-            return new MoviePurchaseStrategyFactory().getStrategy(item);
+            return new MoviePurchaseStrategyFactory().getStrategy(purchase);
         }
         else if(item instanceof Book){
-            return new BookPurchaseStrategyFactory().getStrategy(item);
+            return new BookPurchaseStrategyFactory().getStrategy(purchase);
         }
         else if(item instanceof VideoGame){
-            return new VideoGamePurchaseStrategyFactory().getStrategy(item);
+            return new VideoGamePurchaseStrategyFactory().getStrategy(purchase);
         }
         else if(item instanceof GameConsole){
-            return new GameConsolePurchaseStrategyFactory().getStrategy(item);
+            return new GameConsolePurchaseStrategyFactory().getStrategy(purchase);
         }
         else if(item instanceof Popcorn){
-            return new PopcornPurchaseStrategyFactory().getStrategy(item);
+            return new PopcornPurchaseStrategyFactory().getStrategy(purchase);
         }
         throw new IllegalArgumentException("Unknown Item type");
     }

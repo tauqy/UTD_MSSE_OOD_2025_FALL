@@ -4,11 +4,13 @@ import Item.Book.Book;
 import Item.Book.BookType;
 import Item.Item;
 import Purchase.DiscountFrequentPurchasePoint;
+import Purchase.Purchase;
 import Purchase.Strategies.FrequentPurchasePoint.Book.ActionBookFrequentPurchasePoint;
 import Purchase.Strategies.FrequentPurchasePoint.Book.HorrorBookFrequentPurchasePoint;
 
 public class BookFrequentPurchasePointFactory {
-    public DiscountFrequentPurchasePoint getStrategy(Item item){
+    public DiscountFrequentPurchasePoint getStrategy(Purchase purchase){
+        Item item = purchase.getItem();
         Book book = (Book) item;
         if(book.getBookType() == BookType.ACTION){
             return new ActionBookFrequentPurchasePoint();

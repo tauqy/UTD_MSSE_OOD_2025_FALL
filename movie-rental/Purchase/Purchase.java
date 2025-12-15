@@ -17,8 +17,8 @@ public class Purchase implements DiscountPurchase, DiscountFrequentPurchasePoint
         ItemPurchaseStrategyFactory itemPurchaseStrategyFactory = new ItemPurchaseStrategyFactory();
         ItemFrequentPurchasePointFactory itemFrequentPurchasePointFactory = new ItemFrequentPurchasePointFactory();
 
-        this.discountPurchaseStrategy = itemPurchaseStrategyFactory.getStrategy(this.item);
-        this.discountFrequentPurchasePointStrategy = itemFrequentPurchasePointFactory.getStrategy(this.item);
+        this.discountPurchaseStrategy = itemPurchaseStrategyFactory.getStrategy(this);
+        this.discountFrequentPurchasePointStrategy = itemFrequentPurchasePointFactory.getStrategy(this);
     }
 
     public DiscountPurchase getDiscountPurchase(){

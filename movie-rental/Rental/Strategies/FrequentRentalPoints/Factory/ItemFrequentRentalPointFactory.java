@@ -3,6 +3,7 @@ package Rental.Strategies.FrequentRentalPoints.Factory;
 import Item.Book.Book;
 import Item.Item;
 import Item.Movie.Movie;
+import Item.Music.Music;
 import Rental.DiscountFrequentRentalPoint;
 import Rental.Rental;
 
@@ -14,6 +15,9 @@ public class ItemFrequentRentalPointFactory {
         }
         else if(item instanceof Book){
             return new BookFrequentRentalPointFactory().getStrategy(rental);
+        }
+        else if(item instanceof Music){
+            return new MusicFrequentRentalPointFactory().getStrategy(rental);
         }
         throw new IllegalArgumentException("Unknow Item type.");
     }

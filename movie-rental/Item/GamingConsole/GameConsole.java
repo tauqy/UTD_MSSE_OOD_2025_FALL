@@ -3,10 +3,11 @@ package Item.GamingConsole;
 import Item.Item;
 
 public class GameConsole extends Item {
-    private GameConsoleType type;
+    private GameConsoleType gameConsoleType;
 
     public GameConsole(String title, GameConsoleType gameConsoleType){
         this.title = title;
+        this.gameConsoleType = gameConsoleType;
     }
 
     @Override
@@ -15,6 +16,6 @@ public class GameConsole extends Item {
     }
 
     public GameConsoleType getType(){
-        return this.type;
+        return this.gameConsoleType;
     }
 }

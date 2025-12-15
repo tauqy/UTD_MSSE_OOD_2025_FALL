@@ -4,12 +4,14 @@ import Item.Item;
 import Item.Movie.Movie;
 import Item.Movie.MovieType;
 import Purchase.DiscountPurchase;
+import Purchase.Purchase;
 import Purchase.Strategies.PurchasePrice.MoviePurchase.ChildrenMoviePurchase;
 import Purchase.Strategies.PurchasePrice.MoviePurchase.NewReleaseMoviePurchase;
 import Purchase.Strategies.PurchasePrice.MoviePurchase.RegularMoviePurchase;
 
 public class MoviePurchaseStrategyFactory {
-    public DiscountPurchase getStrategy(Item item){
+    public DiscountPurchase getStrategy(Purchase purchase){
+        Item item = purchase.getItem();
         Movie movie = (Movie) item;
         if(movie.getMovieType() == MovieType.REGULAR){
             return new RegularMoviePurchase();
